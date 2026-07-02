@@ -1,0 +1,55 @@
+{
+  "name": "@nitrots/nitro-renderer",
+  "description": "Javascript library for rendering Nitro in the browser using PixiJS",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/billsonnn/nitro-renderer.git"
+  },
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/billsonnn/nitro-renderer/issues"
+  },
+  "homepage": "https://github.com/billsonnn/nitro-renderer",
+  "scripts": {
+    "build": "vite build",
+    "compile": "tsc --project ./tsconfig.json --noEmit false",
+    "eslint": "eslint ./src ./packages/*/src",
+    "eslint-fix": "eslint ./src --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "main": "./index",
+  "dependencies": {
+    "clientjs": "^0.2.1",
+    "gifuct-js": "^2.1.2",
+    "howler": "^2.2.4",
+    "pako": "^2.1.0",
+    "pixi-filters": "^6.1.5",
+    "pixi.js": "^8.17.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/howler": "^2.2.11",
+    "@types/node": "^20.14.12",
+    "@types/pako": "^2.0.3",
+    "@vitest/coverage-v8": "^4.0.18",
+    "eslint": "^9.8.0",
+    "jsdom": "^27.4.0",
+    "tslib": "^2.6.3",
+    "typescript": "~5.8.2",
+    "typescript-eslint": "^8.26.1",
+    "vite": "^5.4.9",
+    "vitest": "^4.0.18"
+  }
+}

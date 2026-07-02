@@ -1,0 +1,23 @@
+.nitro-rp-inventory {
+    width: 280px;
+    height: 380px;
+
+    .equipped-slots {
+        .equipped-slot {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-size: contain;
+        }
+    }
+
+    .rp-item {
+        position: relative;
+        width: 45px;
+        height: 45px;
+        background-size: contain;
+    }
+}
