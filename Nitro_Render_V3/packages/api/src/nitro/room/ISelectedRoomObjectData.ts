@@ -14,5 +14,7 @@ export interface ISelectedRoomObjectData
     state: number;
     animFrame: number;
     posture: string;
+    isDragged: boolean;
+    wasDragged: boolean;
     dispose: () => void;
 }

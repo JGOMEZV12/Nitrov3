@@ -293,9 +293,15 @@ export class RoomObjectEventHandler implements IRoomCanvasMouseListener, IRoomOb
             case RoomObjectMouseEvent.DOUBLE_CLICK:
                 this.handleRoomObjectMouseDoubleClickEvent(event, roomId);
                 return;
-            case RoomObjectMouseEvent.MOUSE_MOVE:
-                this.handleRoomObjectMouseMoveEvent(event, roomId);
+            case RoomObjectMouseEvent.MOUSE_MOVE: {
+                const selectedData = this.getSelectedRoomObjectData(roomId);
+
+                if(!selectedData || !selectedData.isDragged)
+                {
+                    this.handleRoomObjectMouseMoveEvent(event, roomId);
+                }
                 return;
+            }
             case RoomObjectMouseEvent.MOUSE_DOWN:
                 this.handleRoomObjectMouseDownEvent(event, roomId);
                 return;
@@ -344,9 +350,15 @@ export class RoomObjectEventHandler implements IRoomCanvasMouseListener, IRoomOb
     {
         if(!event) return;
 
-        let operation = RoomObjectOperationType.OBJECT_UNDEFINED;
+        let selectedData = this.getSelectedRoomObjectData(roomId);
 
-        const selectedData = this.getSelectedRoomObjectData(roomId);
+        if(selectedData && selectedData.wasDragged)
+        {
+            selectedData.wasDragged = false;
+            return;
+        }
+
+        let operation = RoomObjectOperationType.OBJECT_UNDEFINED;
 
         if(selectedData) operation = selectedData.operation;
 

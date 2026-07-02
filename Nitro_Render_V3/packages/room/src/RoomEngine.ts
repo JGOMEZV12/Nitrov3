@@ -2403,20 +2403,7 @@ export class RoomEngine implements IRoomEngine, IRoomCreator, IRoomEngineService
 
     private handleRoomDragging(canvas: IRoomRenderingCanvas, x: number, y: number, type: string, altKey: boolean, ctrlKey: boolean, shiftKey: boolean): boolean
     {
-         const selectedData = this.getSelectedRoomObjectData(this._activeRoomId);
-
-        if(selectedData &&
-            ((selectedData.operation === RoomObjectOperationType.OBJECT_PLACE) ||
-            (selectedData.operation === RoomObjectOperationType.OBJECT_MOVE) ||
-            (selectedData.operation === RoomObjectOperationType.OBJECT_MOVE_TO)))
-        {
-            this._activeRoomIsDragged = false;
-            this._activeRoomWasDragged = false;
-            this._activeRoomDragX = 0;
-            this._activeRoomDragY = 0;
-
-            return false;
-        }
+        const selectedData = this.getSelectedRoomObjectData(this._activeRoomId);
 
         if(this._areaSelectionManager.areaSelectionState === RoomAreaSelectionManager.SELECTING)
         {
@@ -2436,6 +2423,9 @@ export class RoomEngine implements IRoomEngine, IRoomCreator, IRoomEngineService
                 if(this._roomAllowsDragging)
                 {
                     this._activeRoomIsDragged = true;
+
+                    if(selectedData) selectedData.isDragged = true;
+
                     this._activeRoomWasDragged = false;
                     this._activeRoomDragStartX = this._activeRoomActiveCanvasMouseX;
                     this._activeRoomDragStartY = this._activeRoomActiveCanvasMouseY;
@@ -2448,6 +2438,8 @@ export class RoomEngine implements IRoomEngine, IRoomCreator, IRoomEngineService
             if(this._activeRoomIsDragged)
             {
                 this._activeRoomIsDragged = false;
+
+                if(selectedData) selectedData.isDragged = false;
 
                 if(this._activeRoomWasDragged)
                 {
@@ -2512,6 +2504,8 @@ export class RoomEngine implements IRoomEngine, IRoomCreator, IRoomEngineService
             if(this._activeRoomWasDragged)
             {
                 this._activeRoomWasDragged = false;
+
+                if(selectedData) selectedData.wasDragged = true;
 
                 return true;
             }

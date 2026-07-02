@@ -14,6 +14,8 @@ export class SelectedRoomObjectData implements ISelectedRoomObjectData
     private _state: number = -1;
     private _animFrame: number = -1;
     private _posture: string = null;
+    private _isDragged: boolean = false;
+    private _wasDragged: boolean = false;
 
     constructor(id: number, category: number, operation: string, location: IVector3D, direction: IVector3D, typeId: number = 0, instanceData: string = null, stuffData: IObjectData = null, state: number = -1, frameNumber: number = -1, posture: string = null)
     {
@@ -85,6 +87,26 @@ export class SelectedRoomObjectData implements ISelectedRoomObjectData
     public get posture(): string
     {
         return this._posture;
+    }
+
+    public get isDragged(): boolean
+    {
+        return this._isDragged;
+    }
+
+    public set isDragged(value: boolean)
+    {
+        this._isDragged = value;
+    }
+
+    public get wasDragged(): boolean
+    {
+        return this._wasDragged;
+    }
+
+    public set wasDragged(value: boolean)
+    {
+        this._wasDragged = value;
     }
 
     public dispose(): void
